@@ -21,8 +21,9 @@
     //Add fade animation for on  and off
     //Random light up and flash on launch then fade to current time    
     //Different themes
+    //Set clock to updaate every minute, on the minute
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clock) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
 -(void)clock{

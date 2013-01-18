@@ -12,8 +12,7 @@
 @synthesize hours;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    // Override point for customization after application launch.
-    hours = [[NSMutableDictionary alloc] init];
+    hours = [[NSMutableDictionary alloc] init]; //Dictionary to hold key-value pairs for hours
     [hours setObject: @"one" forKey: @"1"];
     [hours setObject: @"two" forKey: @"2"];
     [hours setObject: @"three" forKey: @"3"];
@@ -56,12 +55,16 @@
     NSDate *now = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *dateComponents = [gregorian components:(NSYearCalendarUnit  | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit  | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
-    a.day   = [dateComponents day];
+
+    //Get the components we need for the clock
     a.min   = [dateComponents minute];
-    a.month = [dateComponents month];
     a.hour  = [dateComponents hour];
     a.sec   = [dateComponents second];
+    
+    //Not currently used, but may be useful in the future
     a.year  = [dateComponents year];
+    a.month = [dateComponents month];
+    a.day   = [dateComponents day];
     return a;
 }
 
