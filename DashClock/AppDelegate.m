@@ -56,14 +56,6 @@
     NSDate *now = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *dateComponents = [gregorian components:(NSYearCalendarUnit  | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit  | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
-//    if (a.hour > 12){
-//        a.hour = ([dateComponents hour] - 12);
-//        NSLog(@"over 12");
-//    }
-//    else{
-//        a.hour  = [dateComponents hour];
-//        NSLog(@"under 12");
-//    }
     a.day   = [dateComponents day];
     a.min   = [dateComponents minute];
     a.month = [dateComponents month];

@@ -170,7 +170,6 @@
  
     SEL s = NSSelectorFromString(themeName);
     [self performSelector:s];
-
     [self clock]; //Called to eliminate 1 second delay when turning one clock
 }
 
