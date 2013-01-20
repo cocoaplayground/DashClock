@@ -12,6 +12,8 @@
 @synthesize hours;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    [UIApplication sharedApplication].idleTimerDisabled = YES; //Prevent device from going to sleep
+    
     hours = [[NSMutableDictionary alloc] init]; //Dictionary to hold key-value pairs for hours
     [hours setObject: @"one" forKey: @"1"];
     [hours setObject: @"two" forKey: @"2"];
@@ -31,6 +33,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application{
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [UIApplication sharedApplication].idleTimerDisabled = NO; //Let device go to sleep
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application{
@@ -48,6 +51,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application{
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [UIApplication sharedApplication].idleTimerDisabled = NO; //Let device go to sleep
 }
 
 -(struct DComps)getDateComponets{

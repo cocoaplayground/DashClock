@@ -12,17 +12,26 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    onColor = [UIColor whiteColor];
-    offColor = [UIColor darkGrayColor];
-    [self clock];
-    themeCount = 1;
-    //TODO turn off auto-lock when app is launched. Turn on when app closes
+    [self setupClock];
+    [self startClock];
+    
+    //TODO
+    //turn off auto-lock when app is launched. Turn on when app closes
     //Add fade animation for on  and off
     //Random light up and flash on launch then fade to current time
     //Different themes
     //Set clock to updaate every minute, on the minute
+}
 
-    //[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
+-(void)setupClock{
+    onColor = [UIColor whiteColor];
+    offColor = [UIColor darkGrayColor];
+    themeCount = 1;
+}
+
+-(void)startClock{
+    [self clock];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
 -(void)clock{
