@@ -12,15 +12,17 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    struct DComps currentTime = [delegate getDateComponets];
+    int secondsToNextMinute = 60 -currentTime.sec;
     [self setupClock];
-    [self startClock];
+    [self clock];
+    [self performSelector:@selector(startClock) withObject:nil afterDelay:secondsToNextMinute]; //Update clock once per minute
     
     //TODO
     //turn off auto-lock when app is launched. Turn on when app closes
     //Add fade animation for on  and off
     //Random light up and flash on launch then fade to current time
     //Different themes
-    //Set clock to updaate every minute, on the minute
 }
 
 -(void)setupClock{
@@ -31,14 +33,20 @@
 
 -(void)startClock{
     [self clock];
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
+    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
--(void)clock{
-    //[AllLabels setValue:[UIColor darkGrayColor] forKey:@"textColor"];
+-(void)clock{    
+    for (UIView *view in self.view.subviews){       //Turn off all labels
+        if([view isKindOfClass:[UILabel class]]){
+            UILabel *lbl = (UILabel*)view;
+            lbl.off;
+        }
+    }
     it.on; //Always on
     is.on //Always on
     struct DComps currentTime = [delegate getDateComponets];
+
     NSString *hourString = nil;
     
     if (currentTime.hour > 12){
@@ -133,9 +141,19 @@
     }
 }
 
+-(void)dots:(int)minute{
+    NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],
+                         nil];
+    
+    if (minute == 1){
+        dot1.on;
+    }
+}
+
 -(void)pastTo:(int)minute{
     if (minute == 0){
-        
+        to.off;
+        past.off;
     }
     else if (minute >= 35){
         to.on;
