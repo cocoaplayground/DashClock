@@ -13,19 +13,40 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     struct DComps currentTime = [delegate getDateComponets];
-    int secondsToNextMinute = 60 -currentTime.sec;
-    [self setupClock];
+    [self setupClock:currentTime.min];
     [self clock];
-    [self performSelector:@selector(startClock) withObject:nil afterDelay:secondsToNextMinute]; //Update clock once per minute
+    [self performSelector:@selector(startClock) withObject:nil afterDelay:(60 -currentTime.sec)]; //Update clock once per minute
     
     //TODO
-    //turn off auto-lock when app is launched. Turn on when app closes
     //Add fade animation for on  and off
     //Random light up and flash on launch then fade to current time
     //Different themes
 }
 
--(void)setupClock{
+-(void)setupClock:(int)minute{
+    NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:16],[NSNumber numberWithInteger:21],[NSNumber numberWithInteger:26],[NSNumber numberWithInteger:31],[NSNumber numberWithInteger:36],[NSNumber numberWithInteger:41],[NSNumber numberWithInteger:46],[NSNumber numberWithInteger:51],[NSNumber numberWithInteger:56],nil];
+    
+    NSArray *secondDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:2],[NSNumber numberWithInteger:7], [NSNumber numberWithInteger:12],[NSNumber numberWithInteger:17],[NSNumber numberWithInteger:22],[NSNumber numberWithInteger:27],[NSNumber numberWithInteger:32],[NSNumber numberWithInteger:37],[NSNumber numberWithInteger:42],[NSNumber numberWithInteger:47],[NSNumber numberWithInteger:52],[NSNumber numberWithInteger:57],nil];
+    
+    NSArray *thirdDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:3],[NSNumber numberWithInteger:8], [NSNumber numberWithInteger:13],[NSNumber numberWithInteger:18],[NSNumber numberWithInteger:23],[NSNumber numberWithInteger:28],[NSNumber numberWithInteger:33],[NSNumber numberWithInteger:38],[NSNumber numberWithInteger:43],[NSNumber numberWithInteger:48],[NSNumber numberWithInteger:53],[NSNumber numberWithInteger:58],nil];
+    
+    NSArray *fourthDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:4],[NSNumber numberWithInteger:9], [NSNumber numberWithInteger:14],[NSNumber numberWithInteger:19],[NSNumber numberWithInteger:24],[NSNumber numberWithInteger:29],[NSNumber numberWithInteger:34],[NSNumber numberWithInteger:39],[NSNumber numberWithInteger:44],[NSNumber numberWithInteger:49],[NSNumber numberWithInteger:54],[NSNumber numberWithInteger:59],nil];
+    
+    dotCount = 0;
+    
+    if ([firstDots containsObject:[NSNumber numberWithInteger:minute]]){
+        dotCount = 1;
+    }
+    if ([secondDots containsObject:[NSNumber numberWithInteger:minute]]){
+        dotCount = 2;
+    }
+    if ([thirdDots containsObject:[NSNumber numberWithInteger:minute]]){
+        dotCount = 3;
+    }
+    if ([fourthDots containsObject:[NSNumber numberWithInteger:minute]]){
+        dotCount = 4;
+    }
+    
     onColor = [UIColor whiteColor];
     offColor = [UIColor darkGrayColor];
     themeCount = 1;
@@ -36,7 +57,7 @@
     [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
--(void)clock{    
+-(void)clock{
     for (UIView *view in self.view.subviews){       //Turn off all labels
         if([view isKindOfClass:[UILabel class]]){
             UILabel *lbl = (UILabel*)view;
@@ -45,8 +66,11 @@
     }
     it.on; //Always on
     is.on //Always on
-    struct DComps currentTime = [delegate getDateComponets];
+    [self dots];
+    dotCount++;
 
+    struct DComps currentTime = [delegate getDateComponets];
+    
     NSString *hourString = nil;
     
     if (currentTime.hour > 12){
@@ -141,12 +165,38 @@
     }
 }
 
--(void)dots:(int)minute{
-    NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],
-                         nil];
+-(void)dots{
+//    NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],
+//                          nil];
     
-    if (minute == 1){
-        dot1.on;
+    switch (dotCount) {
+        case 0:
+            dot1.off;
+            dot2.off;
+            dot3.off;
+            dot4.off;
+            break;
+        case 1:
+            dot1.on;
+            break;
+        case 2:
+            dot1.on;
+            dot2.on;
+            break;
+        case 3:
+            dot1.on;
+            dot2.on;
+            dot3.on;
+            break;
+        case 4:
+            dot1.on;
+            dot2.on;
+            dot3.on;
+            dot4.on;
+            dotCount = 0;
+            break;
+        default:
+            break;
     }
 }
 
