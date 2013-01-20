@@ -15,10 +15,10 @@
     struct DComps currentTime = [delegate getDateComponets];
     [self setupClock:currentTime.min];
     [self clock];
-    [self performSelector:@selector(startClock) withObject:nil afterDelay:(60 -currentTime.sec)]; //Update clock once per minute
+    [self performSelector:@selector(startClock) withObject:nil afterDelay:(60 - currentTime.sec)]; //Update clock once per minute
     
     //TODO
-    //Add fade animation for on  and off
+    //Add fade animation for on and off
     //Random light up and flash on launch then fade to current time
     //Different themes
 }
@@ -43,7 +43,7 @@
         }
     }
     it.on; //Always on
-    is.on //Always on
+    is.on; //Always on
     [self dots];
     dotCount++;
 
@@ -169,9 +169,6 @@
 }
 
 -(void)dots{
-//    NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:1],
-//                          nil];
-    
     switch (dotCount) {
         case 0:
             dot1.off;
