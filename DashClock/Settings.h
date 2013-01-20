@@ -9,9 +9,8 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #define delegate ((AppDelegate *)[[UIApplication sharedApplication] delegate]) //Allow access to the delegate from allclasses
-#define on textColor = onColor;
-#define off textColor = offColor;
-
+#define on enabled = TRUE;
+#define off enabled = FALSE;
 
 /// Time Camparison Macros
 

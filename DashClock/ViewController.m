@@ -16,7 +16,7 @@
     themeCount = 1;
     //TODO turn off auto-lock when app is launched. Turn on when app closes
     //Add fade animation for on  and off
-    //Random light up and flash on launch then fade to current time    
+    //Random light up and flash on launch then fade to current time
     //Different themes
     //Set clock to updaate every minute, on the minute
     onColor = [UIColor whiteColor];
@@ -82,7 +82,7 @@
     //Hour
     if (currentTime.min < 35){
         //light up current hour
-       ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
+        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
     }
     else{
         //light up next hour
@@ -97,6 +97,21 @@
     
     //[self amPM:currentTime.hour];
     [self pastTo:currentTime.min];
+    
+    //Check status of labels in view to determine if they should be on or off
+    for (UIView *view in self.view.subviews){
+        if([view isKindOfClass:[UILabel class]]){
+            UILabel *lbl = (UILabel*)view;
+            if (lbl.enabled == TRUE){
+                lbl.textColor = onColor;
+                lbl.alpha = 1.0;
+            }
+            else{
+                lbl.textColor = offColor;
+                lbl.alpha = 0.3;
+            }
+        }
+    }
 }
 
 -(void)amPM:(int)hour{
@@ -129,10 +144,10 @@
     }
     
     NSString *themeName = [NSString stringWithFormat:@"theme%i",themeCount];
- 
+    
     SEL s = NSSelectorFromString(themeName);
     [self performSelector:s];
-    [self clock]; //Called to eliminate 1 second delay when turning one clock
+    [self clock]; //Called to eliminate 1 second delay when turning on clock
 }
 
 -(void)theme1{
@@ -149,7 +164,7 @@
 
 -(void)theme3{
     self.view.backgroundColor = [UIColor blackColor];
-    onColor = [UIColor whiteColor];
+    onColor = [UIColor purpleColor];
     offColor = [UIColor darkGrayColor];
 }
 
