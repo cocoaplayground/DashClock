@@ -30,5 +30,6 @@
 -(void)theme4;
 -(void)setupClock:(int)minute;
 -(void)startClock;
+-(void)initializeDots:(int)minute;
 
 @end

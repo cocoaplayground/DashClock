@@ -24,29 +24,7 @@
 }
 
 -(void)setupClock:(int)minute{
-    NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:16],[NSNumber numberWithInteger:21],[NSNumber numberWithInteger:26],[NSNumber numberWithInteger:31],[NSNumber numberWithInteger:36],[NSNumber numberWithInteger:41],[NSNumber numberWithInteger:46],[NSNumber numberWithInteger:51],[NSNumber numberWithInteger:56],nil];
-    
-    NSArray *secondDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:2],[NSNumber numberWithInteger:7], [NSNumber numberWithInteger:12],[NSNumber numberWithInteger:17],[NSNumber numberWithInteger:22],[NSNumber numberWithInteger:27],[NSNumber numberWithInteger:32],[NSNumber numberWithInteger:37],[NSNumber numberWithInteger:42],[NSNumber numberWithInteger:47],[NSNumber numberWithInteger:52],[NSNumber numberWithInteger:57],nil];
-    
-    NSArray *thirdDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:3],[NSNumber numberWithInteger:8], [NSNumber numberWithInteger:13],[NSNumber numberWithInteger:18],[NSNumber numberWithInteger:23],[NSNumber numberWithInteger:28],[NSNumber numberWithInteger:33],[NSNumber numberWithInteger:38],[NSNumber numberWithInteger:43],[NSNumber numberWithInteger:48],[NSNumber numberWithInteger:53],[NSNumber numberWithInteger:58],nil];
-    
-    NSArray *fourthDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:4],[NSNumber numberWithInteger:9], [NSNumber numberWithInteger:14],[NSNumber numberWithInteger:19],[NSNumber numberWithInteger:24],[NSNumber numberWithInteger:29],[NSNumber numberWithInteger:34],[NSNumber numberWithInteger:39],[NSNumber numberWithInteger:44],[NSNumber numberWithInteger:49],[NSNumber numberWithInteger:54],[NSNumber numberWithInteger:59],nil];
-    
-    dotCount = 0;
-    
-    if ([firstDots containsObject:[NSNumber numberWithInteger:minute]]){
-        dotCount = 1;
-    }
-    if ([secondDots containsObject:[NSNumber numberWithInteger:minute]]){
-        dotCount = 2;
-    }
-    if ([thirdDots containsObject:[NSNumber numberWithInteger:minute]]){
-        dotCount = 3;
-    }
-    if ([fourthDots containsObject:[NSNumber numberWithInteger:minute]]){
-        dotCount = 4;
-    }
-    
+    [self initializeDots:minute];    
     onColor = [UIColor whiteColor];
     offColor = [UIColor darkGrayColor];
     themeCount = 1;
@@ -162,6 +140,31 @@
     }
     else{
         am.on;
+    }
+}
+
+-(void)initializeDots:(int)minute{
+    NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:16],[NSNumber numberWithInteger:21],[NSNumber numberWithInteger:26],[NSNumber numberWithInteger:31],[NSNumber numberWithInteger:36],[NSNumber numberWithInteger:41],[NSNumber numberWithInteger:46],[NSNumber numberWithInteger:51],[NSNumber numberWithInteger:56],nil];
+    
+    NSArray *secondDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:2],[NSNumber numberWithInteger:7], [NSNumber numberWithInteger:12],[NSNumber numberWithInteger:17],[NSNumber numberWithInteger:22],[NSNumber numberWithInteger:27],[NSNumber numberWithInteger:32],[NSNumber numberWithInteger:37],[NSNumber numberWithInteger:42],[NSNumber numberWithInteger:47],[NSNumber numberWithInteger:52],[NSNumber numberWithInteger:57],nil];
+    
+    NSArray *thirdDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:3],[NSNumber numberWithInteger:8], [NSNumber numberWithInteger:13],[NSNumber numberWithInteger:18],[NSNumber numberWithInteger:23],[NSNumber numberWithInteger:28],[NSNumber numberWithInteger:33],[NSNumber numberWithInteger:38],[NSNumber numberWithInteger:43],[NSNumber numberWithInteger:48],[NSNumber numberWithInteger:53],[NSNumber numberWithInteger:58],nil];
+    
+    NSArray *fourthDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:4],[NSNumber numberWithInteger:9], [NSNumber numberWithInteger:14],[NSNumber numberWithInteger:19],[NSNumber numberWithInteger:24],[NSNumber numberWithInteger:29],[NSNumber numberWithInteger:34],[NSNumber numberWithInteger:39],[NSNumber numberWithInteger:44],[NSNumber numberWithInteger:49],[NSNumber numberWithInteger:54],[NSNumber numberWithInteger:59],nil];
+    
+    dotCount = 0;
+    
+    if ([firstDots containsObject:[NSNumber numberWithInteger:minute]]){
+        dotCount = 1;
+    }
+    if ([secondDots containsObject:[NSNumber numberWithInteger:minute]]){
+        dotCount = 2;
+    }
+    if ([thirdDots containsObject:[NSNumber numberWithInteger:minute]]){
+        dotCount = 3;
+    }
+    if ([fourthDots containsObject:[NSNumber numberWithInteger:minute]]){
+        dotCount = 4;
     }
 }
 
