@@ -19,9 +19,6 @@
 #define CTLessThan currentTime.min <
 #define CTGreaterThan currentTime.min > 
 
-
-
-
 #pragma mark - Other -
 
 struct DComps{ //Struct to hold date and time information

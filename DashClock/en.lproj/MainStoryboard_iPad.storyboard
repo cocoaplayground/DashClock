@@ -454,42 +454,6 @@
         <image name="brightness.png" width="20" height="20"/>
         <image name="gear.png" width="26" height="26"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changeTheme"/>
-                <relationship kind="outlet" name="a" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="am" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eight" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eleven" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="five1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="five2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="four" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="half" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="is" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="it" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nine" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="oclock" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="one" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="past" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="pm" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="quarter" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="seven" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="six" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ten1" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ten2" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="three" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="to" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="twelve" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="twenty" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="two" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
