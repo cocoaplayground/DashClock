@@ -14,9 +14,9 @@
                         *four, *five2, *two, *eight, *eleven, *seven, *twelve,
                         *ten2, *oclock; 
     int themeCount;     //Used to get the current theme
-    IBOutletCollection(UILabel) UILabel *AllLabels; //references all of the labels connected
-    UIColor *onColor;
-    UIColor *offColor;
+    IBOutletCollection(UILabel) UILabel *AllLabels; //References all of the labels connected
+    UIColor *onColor;   //Color when label is "On"
+    UIColor *offColor;  //Color when label is "Off"
     
 }
 

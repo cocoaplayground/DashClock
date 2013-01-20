@@ -12,6 +12,8 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    onColor = [UIColor whiteColor];
+    offColor = [UIColor darkGrayColor];
     [self clock];
     themeCount = 1;
     //TODO turn off auto-lock when app is launched. Turn on when app closes
@@ -19,13 +21,12 @@
     //Random light up and flash on launch then fade to current time
     //Different themes
     //Set clock to updaate every minute, on the minute
-    onColor = [UIColor whiteColor];
-    offColor = [UIColor darkGrayColor];
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
+
+    //[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
 -(void)clock{
-    [AllLabels setValue:[UIColor darkGrayColor] forKey:@"textColor"];
+    //[AllLabels setValue:[UIColor darkGrayColor] forKey:@"textColor"];
     it.on; //Always on
     is.on //Always on
     struct DComps currentTime = [delegate getDateComponets];
