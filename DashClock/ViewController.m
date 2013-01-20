@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Chase Acton. All rights reserved.
 //
 
-#import "ViewController.h"
 #import "Settings.h"
 
 @implementation ViewController
@@ -15,8 +14,6 @@
     [super viewDidLoad];
     [self clock];
     themeCount = 1;
-    onColor = [UIColor whiteColor];
-    offColor = [UIColor darkGrayColor];
     //TODO turn off auto-lock when app is launched. Turn on when app closes
     //Add fade animation for on  and off
     //Random light up and flash on launch then fade to current time    
@@ -27,9 +24,9 @@
 }
 
 -(void)clock{
-    [self turnOffAll];
-    [self turnOn:it]; //Always on
-    [self turnOn:is]; //Always on
+    [AllLabels setValue:[UIColor darkGrayColor] forKey:@"textColor"];
+    it.on; //Always on
+    is.on //Always on
     struct DComps currentTime = [delegate getDateComponets];
     NSString *hourString = nil;
     
@@ -39,55 +36,54 @@
     else{
         hourString = [NSString stringWithFormat:@"%i",currentTime.hour];
     }
-    
     //Light up 10
-    //XX:10 - XX:14 and XX:50-XX:54
-    if (((currentTime.min >= 10) && (currentTime.min < 15)) || ((currentTime.min > 49) && (currentTime.min < 55))){
-        [self turnOn:ten1];
+    //XX:10 - XX:14 or XX:50-XX:54
+    if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))){
+        ten1.on;
     }
     
     //Light up 5
-    if (((currentTime.min >= 5) && (currentTime.min < 10)) || ((currentTime.min > 54) && (currentTime.min < 60))){
-        [self turnOn:five1];
+    if (((CTGreaterThan 4) && (CTLessThan 10)) || ((CTGreaterThan 54) && (CTLessThan 60))){
+        five1.on;
     }
     
     //Light up a quarter
-    if (((currentTime.min >= 15) && (currentTime.min < 20)) || ((currentTime.min > 44) && (currentTime.min < 50))){
-        [self turnOn:a];
-        [self turnOn:quarter];
+    if (((CTGreaterThan 14) && (CTLessThan 20)) || ((CTGreaterThan 44) && (CTLessThan 50))){
+        a.on;
+        quarter.on;
     }
     
     //Light up a half
-    if (((currentTime.min >= 30) && (currentTime.min < 35))){
-        [self turnOn:half];
+    if (((CTGreaterThan 29) && (CTLessThan 35))){
+        half.on
     }
     
     //Light up twenty
-    if (((currentTime.min >= 20) && (currentTime.min < 30)) || ((currentTime.min >= 40) && (currentTime.min < 45))){
-        [self turnOn:twenty];
+    if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))){
+        twenty.on;
     }
     
     //Light up twenty five
-    if (((currentTime.min >= 25) && (currentTime.min < 30)) || ((currentTime.min >= 35) && (currentTime.min < 40))){
-        [self turnOn:twenty];
-        [self turnOn:five1];
+    if (((CTGreaterThan 24) && (CTLessThan 30)) || ((CTGreaterThan 34) && (CTLessThan 40))){
+        twenty.on;
+        five1.on;
     }
     
     //Hour
     if (currentTime.min < 35){
         //light up current hour
-        [self turnOn:[self valueForKey:[delegate.hours valueForKey:hourString]]];
+       ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
     }
     else{
         //light up next hour
         hourString = [NSString stringWithFormat:@"%i",[hourString intValue]+1];
-        [self turnOn:[self valueForKey:[delegate.hours valueForKey:hourString]]];
+        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
     }
     
     //On the hour
     if ((currentTime.min >= 0) && (currentTime.min < 5)){
-        [self turnOn:oclock];
-        [self turnOn:[self valueForKey:[delegate.hours valueForKey:hourString]]];
+        oclock.on;
+        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
     }
     
     //[self amPM:currentTime.hour];
@@ -96,10 +92,10 @@
 
 -(void)amPM:(int)hour{
     if (hour > 12){
-        [self turnOn:pm];
+        pm.on;
     }
     else{
-        [self turnOn:am];
+        am.on;
     }
 }
 
@@ -108,94 +104,42 @@
         
     }
     else if (minute >= 35){
-        [self turnOn:to];
+        to.on;
     }
     else if (minute >= 5){
-        [self turnOn:past];
+        past.on;
     }
-}
-
-#pragma mark - Switches -
-
--(void)turnOn:(UILabel *)label{
-    /*[UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:2.0];
-    [UIView setAnimationDelegate:self];*/
-    label.textColor = onColor;
-    label.alpha = 1; //Alpha of 1 is on
-    //[UIView commitAnimations];
-}
-
--(void)turnOff:(UILabel *)label{
-    /*[UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:2.0];
-    [UIView setAnimationDelegate:self];*/
-    label.textColor = offColor;
-    label.alpha = 0.3; //Alpha of 0.3 is considered off
-    //[UIView commitAnimations];
-}
-
--(void)turnOffAll{
-    [self turnOff:a];
-    [self turnOff:quarter];
-    [self turnOff:twenty];
-    [self turnOff:five1];
-    [self turnOff:half];
-    [self turnOff:ten1];
-    [self turnOff:to];
-    [self turnOff:past];
-    [self turnOff:nine];
-    [self turnOff:one];
-    [self turnOff:six];
-    [self turnOff:three];
-    [self turnOff:four];
-    [self turnOff:five2];
-    [self turnOff:two];
-    [self turnOff:eight];
-    [self turnOff:eleven];
-    [self turnOff:seven];
-    [self turnOff:twelve];
-    [self turnOff:ten2];
-    [self turnOff:oclock];
 }
 
 #pragma mark - Themes -
 
 -(IBAction)changeTheme{
-    themeCount++;
-    if (themeCount > 4){
-        themeCount = 1;
-    }
-    
-    NSString *themeName = [NSString stringWithFormat:@"theme%i",themeCount];
- 
-    SEL s = NSSelectorFromString(themeName);
-    [self performSelector:s];
-    [self clock]; //Called to eliminate 1 second delay when turning one clock
+//    themeCount++;
+//    if (themeCount > 4){
+//        themeCount = 1;
+//    }
+//    
+//    NSString *themeName = [NSString stringWithFormat:@"theme%i",themeCount];
+// 
+//    SEL s = NSSelectorFromString(themeName);
+//    [self performSelector:s];
+//    [self clock]; //Called to eliminate 1 second delay when turning one clock
 }
 
 -(void)theme1{
     self.view.backgroundColor = [UIColor blackColor];
-    onColor = [UIColor whiteColor];
-    offColor = [UIColor darkGrayColor];
 }
 
 -(void)theme2{
     self.view.backgroundColor = [UIColor whiteColor];
-    onColor = [UIColor blueColor];
-    //onColor = [UIColor colorWithRed:30 green:144 blue:255 alpha:1.0f];
-    offColor = [UIColor darkGrayColor];
 }
 
 -(void)theme3{
     self.view.backgroundColor = [UIColor blackColor];
-    
 }
 
 -(void)theme4{
-        self.view.backgroundColor = [UIColor whiteColor];
-    onColor = [UIColor blackColor];
-    offColor = [UIColor darkGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark - Memory Management -
