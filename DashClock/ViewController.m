@@ -19,7 +19,8 @@
     //Random light up and flash on launch then fade to current time    
     //Different themes
     //Set clock to updaate every minute, on the minute
-    
+    onColor = [UIColor whiteColor];
+    offColor = [UIColor darkGrayColor];
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
@@ -35,6 +36,15 @@
     }
     else{
         hourString = [NSString stringWithFormat:@"%i",currentTime.hour];
+    }
+    
+    NSString *nextHourString = nil;
+    
+    if (currentTime.hour + 1 > 12){
+        nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour+1-12];
+    }
+    else{
+        nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour];
     }
     //Light up 10
     //XX:10 - XX:14 or XX:50-XX:54
@@ -76,8 +86,7 @@
     }
     else{
         //light up next hour
-        hourString = [NSString stringWithFormat:@"%i",[hourString intValue]+1];
-        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
+        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:nextHourString]]).on;
     }
     
     //On the hour
@@ -114,32 +123,40 @@
 #pragma mark - Themes -
 
 -(IBAction)changeTheme{
-//    themeCount++;
-//    if (themeCount > 4){
-//        themeCount = 1;
-//    }
-//    
-//    NSString *themeName = [NSString stringWithFormat:@"theme%i",themeCount];
-// 
-//    SEL s = NSSelectorFromString(themeName);
-//    [self performSelector:s];
-//    [self clock]; //Called to eliminate 1 second delay when turning one clock
+    themeCount++;
+    if (themeCount > 4){
+        themeCount = 1;
+    }
+    
+    NSString *themeName = [NSString stringWithFormat:@"theme%i",themeCount];
+ 
+    SEL s = NSSelectorFromString(themeName);
+    [self performSelector:s];
+    [self clock]; //Called to eliminate 1 second delay when turning one clock
 }
 
 -(void)theme1{
     self.view.backgroundColor = [UIColor blackColor];
+    onColor = [UIColor whiteColor];
+    offColor = [UIColor darkGrayColor];
 }
 
 -(void)theme2{
     self.view.backgroundColor = [UIColor whiteColor];
+    onColor = [UIColor blueColor];
+    offColor = [UIColor darkGrayColor];
 }
 
 -(void)theme3{
     self.view.backgroundColor = [UIColor blackColor];
+    onColor = [UIColor whiteColor];
+    offColor = [UIColor darkGrayColor];
 }
 
 -(void)theme4{
     self.view.backgroundColor = [UIColor whiteColor];
+    onColor = [UIColor blackColor];
+    offColor = [UIColor darkGrayColor];
 }
 
 #pragma mark - Memory Management -
