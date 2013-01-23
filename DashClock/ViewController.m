@@ -38,8 +38,8 @@
 -(void)clock{
     for (UIView *view in self.view.subviews){       //Turn off all labels
         if([view isKindOfClass:[UILabel class]]){
-            UILabel *lbl = (UILabel*)view;
-            lbl.off;
+            UILabel *label = (UILabel*)view;
+            label.off;
         }
     }
     it.on; //Always on
@@ -121,14 +121,23 @@
     //Check status of labels in view to determine if they should be on or off
     for (UIView *view in self.view.subviews){
         if([view isKindOfClass:[UILabel class]]){
-            UILabel *lbl = (UILabel*)view;
-            if (lbl.enabled == TRUE){
-                lbl.textColor = onColor;
-                lbl.alpha = 1.0;
+            UILabel *label = (UILabel*)view;
+            if (label.enabled == TRUE){
+                [UIView beginAnimations: nil context: NULL];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+                label.textColor = onColor;
+                label.alpha = 1.0;
+                [UIView commitAnimations];
+
             }
             else{
-                lbl.textColor = offColor;
-                lbl.alpha = 0.3;
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+                label.textColor = onColor;
+                label.textColor = offColor;
+                label.alpha = 0.3;
+                [UIView commitAnimations];
             }
         }
     }
