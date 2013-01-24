@@ -31,5 +31,6 @@
 -(void)setupClock:(int)minute;
 -(void)startClock;
 -(void)initializeDots:(int)minute;
+-(void)randomBlink;
 
 @end
