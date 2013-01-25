@@ -16,10 +16,9 @@
     [self setupClock:currentTime.min]; //Setup dots, set initial colors and theme
     [self clock]; //Do initial update
     [self performSelector:@selector(startClock) withObject:nil afterDelay:(60 - currentTime.sec)]; //Update clock once per minute, starting on the minute
-    
-    //TODO
-    //Different themes
 }
+
+#pragma mark - Clock Setup -
 
 -(void)setupClock:(int)minute{
     [self initializeDots:minute];    
@@ -33,6 +32,8 @@
     [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
+#pragma mark - Main Clock Methods -
+
 -(void)clock{
     for (UIView *view in self.view.subviews){       //Turn off all labels
         if([view isKindOfClass:[UILabel class]]){
@@ -45,8 +46,8 @@
     }
     it.on; //Always on
     is.on; //Always on
-    [self dots];
-    dotCount++;
+    
+    [self dots]; //Setup minute dots
 
     struct DComps currentTime = [delegate getDateComponets];
     
@@ -143,11 +144,23 @@
 -(void)amPM:(int)hour{
     if (hour > 12){
         pm.on;
-    }
-    else{
+    }else{
         am.on;
     }
 }
+
+-(void)pastTo:(int)minute{
+    if (minute == 0){
+        to.off;
+        past.off;
+    }else if (minute >= 35){
+        to.on;
+    }else if (minute >= 5){
+        past.on;
+    }
+}
+
+#pragma mark - Minute Dots -
 
 -(void)initializeDots:(int)minute{
     NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:16],[NSNumber numberWithInteger:21],[NSNumber numberWithInteger:26],[NSNumber numberWithInteger:31],[NSNumber numberWithInteger:36],[NSNumber numberWithInteger:41],[NSNumber numberWithInteger:46],[NSNumber numberWithInteger:51],[NSNumber numberWithInteger:56],nil];
@@ -204,19 +217,7 @@
         default:
             break;
     }
-}
-
--(void)pastTo:(int)minute{
-    if (minute == 0){
-        to.off;
-        past.off;
-    }
-    else if (minute >= 35){
-        to.on;
-    }
-    else if (minute >= 5){
-        past.on;
-    }
+    dotCount++;
 }
 
 #pragma mark - Themes -
@@ -242,19 +243,19 @@
 
 -(void)theme2{
     self.view.backgroundColor = [UIColor whiteColor];
-    onColor = [UIColor blueColor];
+    onColor = [UIColor blackColor];
     offColor = [UIColor darkGrayColor];
 }
 
 -(void)theme3{
     self.view.backgroundColor = [UIColor blackColor];
-    onColor = [UIColor purpleColor];
+    onColor = [UIColor colorWithRed:19/255 green:92/255 blue:242/255 alpha:1];
     offColor = [UIColor darkGrayColor];
 }
 
 -(void)theme4{
     self.view.backgroundColor = [UIColor whiteColor];
-    onColor = [UIColor blackColor];
+    onColor = [UIColor colorWithRed:19/255 green:92/255 blue:242/255 alpha:1];
     offColor = [UIColor darkGrayColor];
 }
 
@@ -265,33 +266,3 @@
 }
 
 @end
-
-/*-(void)randomBlink{
- int alpha = arc4random() % 5;
- it.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- is.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- one.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- two.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- three.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- four.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- five1.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- five2.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- six.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- seven.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- eight.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- nine.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- ten1.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- ten2.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- eleven.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- twenty.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- a.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- quarter.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- to.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- past.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- am.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- pm.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- past.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- twelve.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- oclock.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- half.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
- }*/
