@@ -14,14 +14,10 @@
     [super viewDidLoad];
     struct DComps currentTime = [delegate getDateComponets];
     [self setupClock:currentTime.min]; //Setup dots, set initial colors and theme
-    //[self clock]; //Do initial update
-    //[self performSelector:@selector(startClock) withObject:nil afterDelay:(60 - currentTime.sec)]; //Update clock once per minute, starting on the minute
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(randomBlink) userInfo:nil repeats:YES]; //Update clock every second
-
+    [self clock]; //Do initial update
+    [self performSelector:@selector(startClock) withObject:nil afterDelay:(60 - currentTime.sec)]; //Update clock once per minute, starting on the minute
     
     //TODO
-    //Add fade animation for on and off
-    //Random light up and flash on launch then fade to current time
     //Different themes
 }
 
@@ -34,49 +30,17 @@
 
 -(void)startClock{
     [self clock];
-    //[NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
-
-}
-
--(void)randomBlink{ //Remember to disable labels and alpha
-    int r = 50;
-    int alpha = arc4random() % 5;
-    NSLog(@"%i",alpha);
-    it.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    is.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    one.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    two.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    three.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    four.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    five1.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    five2.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    six.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    seven.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    eight.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    nine.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    ten1.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    ten2.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    eleven.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    twenty.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    a.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    quarter.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    to.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    past.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    am.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    pm.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    past.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    twelve.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    oclock.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-    half.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
-
-
+    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
 -(void)clock{
     for (UIView *view in self.view.subviews){       //Turn off all labels
         if([view isKindOfClass:[UILabel class]]){
             UILabel *label = (UILabel*)view;
+            [UIView setAnimationDuration:0.5];
+            [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
             label.off;
+            [UIView commitAnimations];
         }
     }
     it.on; //Always on
@@ -101,7 +65,6 @@
     }
     
     //Light up 10
-    //XX:10 - XX:14 or XX:50-XX:54
     if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))){
         ten1.on;
     }
@@ -302,3 +265,33 @@
 }
 
 @end
+
+/*-(void)randomBlink{
+ int alpha = arc4random() % 5;
+ it.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ is.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ one.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ two.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ three.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ four.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ five1.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ five2.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ six.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ seven.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ eight.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ nine.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ ten1.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ ten2.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ eleven.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ twenty.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ a.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ quarter.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ to.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ past.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ am.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ pm.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ past.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ twelve.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ oclock.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ half.textColor = [UIColor colorWithRed:((arc4random() % 255 )/255.0) green:((arc4random() % 255 )/255.0) blue:((arc4random() % 255 )/255.0)alpha:alpha];
+ }*/
