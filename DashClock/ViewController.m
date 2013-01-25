@@ -21,7 +21,7 @@
 #pragma mark - Clock Setup -
 
 -(void)setupClock:(int)minute{
-    [self initializeDots:minute];    
+    [self initializeDots:minute];
     onColor = [UIColor whiteColor];
     offColor = [UIColor darkGrayColor];
     themeCount = 1;
@@ -35,35 +35,13 @@
 #pragma mark - Main Clock Methods -
 
 -(void)clock{
-    for (UIView *view in self.view.subviews){       //Turn off all labels
-        if([view isKindOfClass:[UILabel class]]){
-            UILabel *label = (UILabel*)view;
-            [UIView setAnimationDuration:0.5];
-            [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-            label.off;
-            [UIView commitAnimations];
-        }
-    }
+    [self getLabels:1];
     it.on; //Always on
     is.on; //Always on
     
     [self dots]; //Setup minute dots
-
+    
     struct DComps currentTime = [delegate getDateComponets];
-    
-    NSString *hourString = nil; //Current hour
-    if (currentTime.hour > 12){
-        hourString = [NSString stringWithFormat:@"%i",currentTime.hour-12];
-    }else{
-        hourString = [NSString stringWithFormat:@"%i",currentTime.hour];
-    }
-    
-    NSString *nextHourString = nil; //Next hour
-    if (currentTime.hour + 1 > 12){
-        nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour+1-12];
-    }else{
-        nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour];
-    }
     
     //Light up 10
     if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))){
@@ -98,6 +76,20 @@
     }
     
     //Hour
+    NSString *hourString = nil; //Current hour
+    if (currentTime.hour > 12){
+        hourString = [NSString stringWithFormat:@"%i",currentTime.hour-12];
+    }else{
+        hourString = [NSString stringWithFormat:@"%i",currentTime.hour];
+    }
+    
+    NSString *nextHourString = nil; //Next hour
+    if (currentTime.hour + 1 > 12){
+        nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour+1-12];
+    }else{
+        nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour];
+    }
+    
     if (currentTime.min < 35){
         //light up current hour
         ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
@@ -113,40 +105,8 @@
         ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
     }
     
-    //[self amPM:currentTime.hour];
     [self pastTo:currentTime.min];
-    
-    //Check status of labels in view to determine if they should be on or off
-    for (UIView *view in self.view.subviews){
-        if([view isKindOfClass:[UILabel class]]){
-            UILabel *label = (UILabel*)view;
-            if (label.enabled == TRUE){
-                [UIView beginAnimations: nil context: NULL];
-                [UIView setAnimationDuration:0.5];
-                [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-                label.textColor = onColor;
-                label.alpha = 1.0;
-                [UIView commitAnimations];
-
-            }
-            else{
-                [UIView setAnimationDuration:0.5];
-                [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-                label.textColor = onColor;
-                label.textColor = offColor;
-                label.alpha = 0.3;
-                [UIView commitAnimations];
-            }
-        }
-    }
-}
-
--(void)amPM:(int)hour{
-    if (hour > 12){
-        pm.on;
-    }else{
-        am.on;
-    }
+    [self getLabels:2]; //Check status of labels in view to determine if they should be on or off
 }
 
 -(void)pastTo:(int)minute{
@@ -160,62 +120,62 @@
     }
 }
 
+-(void)getLabels:(int)type{
+    for (UIView *view in self.view.subviews){
+        if([view isKindOfClass:[UILabel class]]){
+            UILabel *label = (UILabel*)view;
+            if (type == 1){
+                label.off;
+            }
+            else{
+                if (label.enabled == TRUE){
+                    label.textColor = onColor;
+                    label.alpha = 1.0;
+                }else{
+                    label.textColor = onColor;
+                    label.textColor = offColor;
+                    label.alpha = 0.3;
+                }
+            }
+        }
+    }
+}
+
 #pragma mark - Minute Dots -
 
 -(void)initializeDots:(int)minute{
     NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:16],[NSNumber numberWithInteger:21],[NSNumber numberWithInteger:26],[NSNumber numberWithInteger:31],[NSNumber numberWithInteger:36],[NSNumber numberWithInteger:41],[NSNumber numberWithInteger:46],[NSNumber numberWithInteger:51],[NSNumber numberWithInteger:56],nil];
     
-    NSArray *secondDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:2],[NSNumber numberWithInteger:7], [NSNumber numberWithInteger:12],[NSNumber numberWithInteger:17],[NSNumber numberWithInteger:22],[NSNumber numberWithInteger:27],[NSNumber numberWithInteger:32],[NSNumber numberWithInteger:37],[NSNumber numberWithInteger:42],[NSNumber numberWithInteger:47],[NSNumber numberWithInteger:52],[NSNumber numberWithInteger:57],nil];
-    
-    NSArray *thirdDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:3],[NSNumber numberWithInteger:8], [NSNumber numberWithInteger:13],[NSNumber numberWithInteger:18],[NSNumber numberWithInteger:23],[NSNumber numberWithInteger:28],[NSNumber numberWithInteger:33],[NSNumber numberWithInteger:38],[NSNumber numberWithInteger:43],[NSNumber numberWithInteger:48],[NSNumber numberWithInteger:53],[NSNumber numberWithInteger:58],nil];
-    
-    NSArray *fourthDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:4],[NSNumber numberWithInteger:9], [NSNumber numberWithInteger:14],[NSNumber numberWithInteger:19],[NSNumber numberWithInteger:24],[NSNumber numberWithInteger:29],[NSNumber numberWithInteger:34],[NSNumber numberWithInteger:39],[NSNumber numberWithInteger:44],[NSNumber numberWithInteger:49],[NSNumber numberWithInteger:54],[NSNumber numberWithInteger:59],nil];
-    
-    dotCount = 0;
-    
     if ([firstDots containsObject:[NSNumber numberWithInteger:minute]]){
         dotCount = 1;
     }
-    if ([secondDots containsObject:[NSNumber numberWithInteger:minute]]){
+    if ([firstDots containsObject:[NSNumber numberWithInteger:minute-1]]){
         dotCount = 2;
     }
-    if ([thirdDots containsObject:[NSNumber numberWithInteger:minute]]){
+    if ([firstDots containsObject:[NSNumber numberWithInteger:minute-2]]){
         dotCount = 3;
     }
-    if ([fourthDots containsObject:[NSNumber numberWithInteger:minute]]){
+    if ([firstDots containsObject:[NSNumber numberWithInteger:minute-3]]){
         dotCount = 4;
     }
 }
 
 -(void)dots{
-    switch (dotCount) {
-        case 0:
-            dot1.off;
-            dot2.off;
-            dot3.off;
-            dot4.off;
-            break;
-        case 1:
-            dot1.on;
-            break;
-        case 2:
-            dot1.on;
-            dot2.on;
-            break;
-        case 3:
-            dot1.on;
-            dot2.on;
-            dot3.on;
-            break;
-        case 4:
-            dot1.on;
-            dot2.on;
-            dot3.on;
-            dot4.on;
-            dotCount = 0;
-            break;
-        default:
-            break;
+    if (dotCount == 0){
+        dot1.off; dot2.off; dot3.off; dot4.off;
+    }
+    else if (dotCount == 1){
+        dot1.on;
+    }
+    else if (dotCount == 2){
+        dot1.on; dot2.on;
+    }
+    else if (dotCount == 3){
+        dot1.on; dot2.on; dot3.on;
+    }
+    else{
+        dot1.on; dot2.on; dot3.on; dot4.on;
+        dotCount = 0;
     }
     dotCount++;
 }

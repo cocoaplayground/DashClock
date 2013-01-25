@@ -17,7 +17,6 @@
     
     int themeCount;     //Used to get the current theme
     int dotCount;
-    
     UIColor *onColor;   //Color when label is "On"
     UIColor *offColor;  //Color when label is "Off"
 }
@@ -27,9 +26,8 @@
 -(void)setupClock:(int)minute;
 -(void)startClock;
 -(void)clock;
--(void)amPM:(int)hour;      //Turn on either AM or PM, based on current hour
 -(void)pastTo:(int)minute;  //Turn on "past" or "to" light, based on current minute
-
+-(void)getLabels:(int)type;
 -(void)initializeDots:(int)minute; //Gets dots for initial time
 -(void)dots;    //Turns on dots to show minutes
 
