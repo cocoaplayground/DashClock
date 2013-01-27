@@ -167,9 +167,7 @@
 
 -(IBAction)changeTheme{
     themeCount++;
-    if (themeCount > 4){
-        themeCount = 1;
-    }
+    if (themeCount > 4) themeCount = 1;
     [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"theme%i",themeCount])];
     [self clock]; //Called to eliminate 1 second delay when turning on clock
 }

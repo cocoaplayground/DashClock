@@ -24,16 +24,14 @@
 
 -(IBAction)changeTheme; //Cycle through themes
 
--(void)setupClock:(int)minute;
--(void)startClock;
--(void)clock;
--(void)pastTo:(int)minute;  //Turn on "past" or "to" light, based on current minute
--(void)getLabels:(int)type;
--(void)initializeDots:(int)minute; //Gets dots for initial time
--(void)dots;    //Turns on dots to show minutes
-
-//Set up themes
--(void)theme1;
+-(void)setupClock:(int)minute;      //Sets up initial label colors, theme, and dots
+-(void)startClock;                  //Syncs clock to next minute
+-(void)clock;                       //Called once per minute
+-(void)pastTo:(int)minute;          //Turn on "past" or "to" light, based on current minute
+-(void)getLabels:(int)type;         //Cycle through all labels in view and turn off or on
+-(void)initializeDots:(int)minute;  //Gets dots for initial time
+-(void)dots;                        //Turns on dots to show minutes
+-(void)theme1;                      //Set up themes
 -(void)theme2;
 -(void)theme3;
 -(void)theme4;

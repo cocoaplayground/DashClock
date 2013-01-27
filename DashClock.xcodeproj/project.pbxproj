@@ -97,10 +97,10 @@
 				1C9C5D3916A721F90094A638 /* Settings.h */,
 				1C9C5D1916A713610094A638 /* AppDelegate.h */,
 				1C9C5D1A16A713610094A638 /* AppDelegate.m */,
-				1C9C5D2216A713610094A638 /* MainStoryboard_iPhone.storyboard */,
-				1C9C5D2516A713610094A638 /* MainStoryboard_iPad.storyboard */,
 				1C9C5D2816A713610094A638 /* ViewController.h */,
 				1C9C5D2916A713610094A638 /* ViewController.m */,
+				1C9C5D2216A713610094A638 /* MainStoryboard_iPhone.storyboard */,
+				1C9C5D2516A713610094A638 /* MainStoryboard_iPad.storyboard */,
 				1C9C5D1116A713610094A638 /* Supporting Files */,
 			);
 			path = DashClock;
