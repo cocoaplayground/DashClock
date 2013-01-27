@@ -23,6 +23,10 @@
 		1C9C5D2416A713610094A638 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C9C5D2216A713610094A638 /* MainStoryboard_iPhone.storyboard */; };
 		1C9C5D2716A713610094A638 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C9C5D2516A713610094A638 /* MainStoryboard_iPad.storyboard */; };
 		1C9C5D2A16A713610094A638 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9C5D2916A713610094A638 /* ViewController.m */; };
+		1CAB986016B5F43C008F0577 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB985F16B5F43C008F0577 /* Icon.png */; };
+		1CAB986216B5F43F008F0577 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB986116B5F43F008F0577 /* Icon@2x.png */; };
+		1CAB986416B5F444008F0577 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB986316B5F444008F0577 /* Icon-72.png */; };
+		1CAB986616B5F445008F0577 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB986516B5F445008F0577 /* Icon-72@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		1C9C5D2816A713610094A638 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1C9C5D2916A713610094A638 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1C9C5D3916A721F90094A638 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		1CAB985F16B5F43C008F0577 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		1CAB986116B5F43F008F0577 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		1CAB986316B5F444008F0577 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		1CAB986516B5F445008F0577 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,7 @@
 		1C9C5D1116A713610094A638 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1CAB986B16B5F480008F0577 /* Icons */,
 				1C515D6216A86294005562BB /* gear.png */,
 				1C515D6316A86294005562BB /* gear@2x.png */,
 				1C515D5D16A861C2005562BB /* brightness.png */,
@@ -122,6 +131,18 @@
 				1C9C5D2016A713610094A638 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CAB986B16B5F480008F0577 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				1CAB986516B5F445008F0577 /* Icon-72@2x.png */,
+				1CAB986316B5F444008F0577 /* Icon-72.png */,
+				1CAB986116B5F43F008F0577 /* Icon@2x.png */,
+				1CAB985F16B5F43C008F0577 /* Icon.png */,
+			);
+			name = Icons;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +206,10 @@
 				1C515D6016A861C2005562BB /* brightness@2x.png in Resources */,
 				1C515D6416A86294005562BB /* gear.png in Resources */,
 				1C515D6516A86294005562BB /* gear@2x.png in Resources */,
+				1CAB986016B5F43C008F0577 /* Icon.png in Resources */,
+				1CAB986216B5F43F008F0577 /* Icon@2x.png in Resources */,
+				1CAB986416B5F444008F0577 /* Icon-72.png in Resources */,
+				1CAB986616B5F445008F0577 /* Icon-72@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +265,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -255,6 +281,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -269,7 +297,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -277,6 +306,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -286,10 +317,14 @@
 		1C9C5D2E16A713610094A638 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DashClock/DashClock-Prefix.pch";
 				INFOPLIST_FILE = "DashClock/DashClock-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -297,10 +332,14 @@
 		1C9C5D2F16A713610094A638 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DashClock/DashClock-Prefix.pch";
 				INFOPLIST_FILE = "DashClock/DashClock-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
