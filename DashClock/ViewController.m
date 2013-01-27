@@ -119,9 +119,9 @@
                     label.textColor = onColor;
                     label.textColor = offColor;
                     if ((themeCount == 1) || (themeCount == 3)){
-                        label.alpha = 0.25;
+                        label.alpha = 0.3;
                     }else{
-                        label.alpha = 0.4;
+                        label.alpha = 0.45;
                     }
                 }
             }
