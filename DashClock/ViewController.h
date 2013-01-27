@@ -21,7 +21,7 @@
     UIColor *offColor;  //Color when label is "Off"
 }
 
--(IBAction)changeTheme;     //Cycle through themes
+-(IBAction)changeTheme; //Cycle through themes
 
 -(void)setupClock:(int)minute;
 -(void)startClock;

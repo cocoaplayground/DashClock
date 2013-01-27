@@ -93,8 +93,7 @@
     if (currentTime.min < 35){
         //light up current hour
         ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
-    }
-    else{
+    }else{
         //light up next hour
         ((UILabel *)[self valueForKey:[delegate.hours valueForKey:nextHourString]]).on;
     }
@@ -163,17 +162,13 @@
 -(void)dots{
     if (dotCount == 0){
         dot1.off; dot2.off; dot3.off; dot4.off;
-    }
-    else if (dotCount == 1){
+    }else if (dotCount == 1){
         dot1.on;
-    }
-    else if (dotCount == 2){
+    }else if (dotCount == 2){
         dot1.on; dot2.on;
-    }
-    else if (dotCount == 3){
+    }else if (dotCount == 3){
         dot1.on; dot2.on; dot3.on;
-    }
-    else{
+    }else{
         dot1.on; dot2.on; dot3.on; dot4.on;
         dotCount = 0;
     }
@@ -187,11 +182,8 @@
     if (themeCount > 4){
         themeCount = 1;
     }
-    
     NSString *themeName = [NSString stringWithFormat:@"theme%i",themeCount];
-    
-    SEL s = NSSelectorFromString(themeName);
-    [self performSelector:s];
+    [self performSelector:NSSelectorFromString(themeName)];
     [self clock]; //Called to eliminate 1 second delay when turning on clock
 }
 
