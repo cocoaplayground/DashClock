@@ -35,47 +35,36 @@
 #pragma mark - Main Clock Methods -
 
 -(void)clock{
-    [self getLabels:1];
-    it.on; //Always on
-    is.on; //Always on
-    
-    [self dots]; //Setup minute dots
-    
     struct DComps currentTime = [delegate getDateComponets];
     
-    //Light up 10
-    if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))){
+    [self getLabels:1];
+    it.on; is.on; //Always on
+    [self dots]; //Setup minute dots
+    
+    if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))){ //Light up 10
         ten1.on;
     }
     
-    //Light up 5
-    if (((CTGreaterThan 4) && (CTLessThan 10)) || ((CTGreaterThan 54) && (CTLessThan 60))){
+    if (((CTGreaterThan 4) && (CTLessThan 10)) || ((CTGreaterThan 54) && (CTLessThan 60))){ //Light up 5
         five1.on;
     }
     
-    //Light up a quarter
-    if (((CTGreaterThan 14) && (CTLessThan 20)) || ((CTGreaterThan 44) && (CTLessThan 50))){
-        a.on;
-        quarter.on;
+    if (((CTGreaterThan 14) && (CTLessThan 20)) || ((CTGreaterThan 44) && (CTLessThan 50))){ //Light up a quarter
+        a.on; quarter.on;
     }
     
-    //Light up a half
-    if (((CTGreaterThan 29) && (CTLessThan 35))){
+    if (((CTGreaterThan 29) && (CTLessThan 35))){ //Light up a half
         half.on
     }
     
-    //Light up twenty
-    if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))){
+    if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))){ //Light up twenty
         twenty.on;
     }
     
-    //Light up twenty five
-    if (((CTGreaterThan 24) && (CTLessThan 30)) || ((CTGreaterThan 34) && (CTLessThan 40))){
-        twenty.on;
-        five1.on;
+    if (((CTGreaterThan 24) && (CTLessThan 30)) || ((CTGreaterThan 34) && (CTLessThan 40))){ //Light up twenty five
+        twenty.on; five1.on;
     }
     
-    //Hour
     NSString *hourString = nil; //Current hour
     if (currentTime.hour > 12){
         hourString = [NSString stringWithFormat:@"%i",currentTime.hour-12];
@@ -91,15 +80,12 @@
     }
     
     if (currentTime.min < 35){
-        //light up current hour
-        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
+        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on; //light up current hour
     }else{
-        //light up next hour
-        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:nextHourString]]).on;
+        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:nextHourString]]).on; //light up next hour
     }
     
-    //On the hour
-    if ((currentTime.min >= 0) && (currentTime.min < 5)){
+    if ((currentTime.min >= 0) && (currentTime.min < 5)){ //On the hour
         oclock.on;
         ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
     }
@@ -125,15 +111,18 @@
             UILabel *label = (UILabel*)view;
             if (type == 1){
                 label.off;
-            }
-            else{
+            }else{
                 if (label.enabled == TRUE){
                     label.textColor = onColor;
                     label.alpha = 1.0;
                 }else{
                     label.textColor = onColor;
                     label.textColor = offColor;
-                    label.alpha = 0.3;
+                    if ((themeCount == 1) || (themeCount == 3)){
+                        label.alpha = 0.25;
+                    }else{
+                        label.alpha = 0.4;
+                    }
                 }
             }
         }
@@ -144,7 +133,6 @@
 
 -(void)initializeDots:(int)minute{
     NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:16],[NSNumber numberWithInteger:21],[NSNumber numberWithInteger:26],[NSNumber numberWithInteger:31],[NSNumber numberWithInteger:36],[NSNumber numberWithInteger:41],[NSNumber numberWithInteger:46],[NSNumber numberWithInteger:51],[NSNumber numberWithInteger:56],nil];
-    
     if ([firstDots containsObject:[NSNumber numberWithInteger:minute]]){
         dotCount = 1;
     }
@@ -182,8 +170,7 @@
     if (themeCount > 4){
         themeCount = 1;
     }
-    NSString *themeName = [NSString stringWithFormat:@"theme%i",themeCount];
-    [self performSelector:NSSelectorFromString(themeName)];
+    [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"theme%i",themeCount])];
     [self clock]; //Called to eliminate 1 second delay when turning on clock
 }
 
@@ -201,20 +188,13 @@
 
 -(void)theme3{
     self.view.backgroundColor = [UIColor blackColor];
-    onColor = [UIColor colorWithRed:19/255 green:92/255 blue:242/255 alpha:1];
+    onColor = [UIColor colorWithRed:19.0/255.0 green:92.0/255.0 blue:242.0/255.0 alpha:1.0];
     offColor = [UIColor darkGrayColor];
 }
 
 -(void)theme4{
     self.view.backgroundColor = [UIColor whiteColor];
-    onColor = [UIColor colorWithRed:19/255 green:92/255 blue:242/255 alpha:1];
-    offColor = [UIColor darkGrayColor];
-}
-
-#pragma mark - Memory Management -
-
-- (void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
+    onColor = [UIColor colorWithRed:19.0/255.0 green:92.0/255.0 blue:242.0/255.0 alpha:1.0];
 }
 
 @end

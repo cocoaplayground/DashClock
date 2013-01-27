@@ -16,7 +16,8 @@
     IBOutlet UILabel    *dot1, *dot2, *dot3, *dot4; //Dots to show minutes
     
     int themeCount;     //Used to get the current theme
-    int dotCount;
+    int dotCount;       //Current minute dot
+    int offAlpha;       //Alpha of "Off" labels
     UIColor *onColor;   //Color when label is "On"
     UIColor *offColor;  //Color when label is "Off"
 }
@@ -31,7 +32,8 @@
 -(void)initializeDots:(int)minute; //Gets dots for initial time
 -(void)dots;    //Turns on dots to show minutes
 
--(void)theme1;  //Set up themes
+//Set up themes
+-(void)theme1;
 -(void)theme2;
 -(void)theme3;
 -(void)theme4;
