@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ThemeManager.h"
-#import "TimeComponents.h"
-
-@class ThemeManager;
-@class TimeComponents;
+#include "ThemeManager.h"
+#include "TimeComponents.h"
 
 @interface ViewController : UIViewController{
     IBOutlet UILabel    *it, *is, *am, *pm, *a, *quarter, *twenty, *five1, //Labels that can be lit up

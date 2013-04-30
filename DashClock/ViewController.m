@@ -43,15 +43,17 @@
     it.on; is.on; //Always on
     [self dots]; //Setup minute dots
     
-    if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))) //Light up 10
+    if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))){ //Light up 10
         ten1.on;
-    
+    }
+
     if (((CTGreaterThan 4) && (CTLessThan 10)) || ((CTGreaterThan 54) && (CTLessThan 60))){ //Light up 5
         five1.on;
     }
     
-    if (((CTGreaterThan 14) && (CTLessThan 20)) || ((CTGreaterThan 44) && (CTLessThan 50))) //Light up a quarter
+    if (((CTGreaterThan 14) && (CTLessThan 20)) || ((CTGreaterThan 44) && (CTLessThan 50))){ //Light up a quarter
         a.on; quarter.on;
+    }
     
     if (((CTGreaterThan 29) && (CTLessThan 35))){ //Light up a half
         half.on
