@@ -7,11 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "Flurry.h"
 
 @implementation AppDelegate
 @synthesize hours;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    [Flurry startSession:@"3HTRD89PV3JCRCXR77FD"];
     [UIApplication sharedApplication].idleTimerDisabled = YES; //Prevent device from going to sleep
     
     hours = [[NSMutableDictionary alloc] init]; //Dictionary to hold key-value pairs for hours

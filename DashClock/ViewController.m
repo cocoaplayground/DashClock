@@ -7,6 +7,7 @@
 //
 
 #import "Settings.h"
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks" //Added to surpress warning in changeTheme method while performing selector
 
 @implementation ViewController
 
@@ -41,43 +42,35 @@
     it.on; is.on; //Always on
     [self dots]; //Setup minute dots
     
-    if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))){ //Light up 10
+    if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))) //Light up 10
         ten1.on;
-    }
     
-    if (((CTGreaterThan 4) && (CTLessThan 10)) || ((CTGreaterThan 54) && (CTLessThan 60))){ //Light up 5
+    if (((CTGreaterThan 4) && (CTLessThan 10)) || ((CTGreaterThan 54) && (CTLessThan 60))) //Light up 5
         five1.on;
-    }
     
-    if (((CTGreaterThan 14) && (CTLessThan 20)) || ((CTGreaterThan 44) && (CTLessThan 50))){ //Light up a quarter
+    if (((CTGreaterThan 14) && (CTLessThan 20)) || ((CTGreaterThan 44) && (CTLessThan 50))) //Light up a quarter
         a.on; quarter.on;
-    }
     
-    if (((CTGreaterThan 29) && (CTLessThan 35))){ //Light up a half
+    if (((CTGreaterThan 29) && (CTLessThan 35))) //Light up a half
         half.on
-    }
     
-    if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))){ //Light up twenty
+    if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))) //Light up twenty
         twenty.on;
-    }
     
-    if (((CTGreaterThan 24) && (CTLessThan 30)) || ((CTGreaterThan 34) && (CTLessThan 40))){ //Light up twenty five
+    if (((CTGreaterThan 24) && (CTLessThan 30)) || ((CTGreaterThan 34) && (CTLessThan 40))) //Light up twenty five
         twenty.on; five1.on;
-    }
     
-    NSString *hourString = nil; //Current hour
-    if (currentTime.hour > 12){
+    NSString *hourString; //Current hour
+    if (currentTime.hour > 12)
         hourString = [NSString stringWithFormat:@"%i",currentTime.hour-12];
-    }else{
+    else
         hourString = [NSString stringWithFormat:@"%i",currentTime.hour];
-    }
     
-    NSString *nextHourString = nil; //Next hour
-    if (currentTime.hour + 1 > 12){
+    NSString *nextHourString; //Next hour
+    if (currentTime.hour + 1 > 12)
         nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour+1-12];
-    }else{
+    else
         nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour];
-    }
     
     if (currentTime.min < 35){
         ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on; //light up current hour
@@ -98,11 +91,10 @@
     if (minute == 0){
         to.off;
         past.off;
-    }else if (minute >= 35){
+    }if (minute >= 35)
         to.on;
-    }else if (minute >= 5){
+    if (minute >= 5)
         past.on;
-    }
 }
 
 -(void)getLabels:(int)type{
@@ -136,14 +128,17 @@
     if ([firstDots containsObject:[NSNumber numberWithInteger:minute]]){
         dotCount = 1;
     }
-    if ([firstDots containsObject:[NSNumber numberWithInteger:minute-1]]){
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-1]]){
         dotCount = 2;
     }
-    if ([firstDots containsObject:[NSNumber numberWithInteger:minute-2]]){
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-2]]){
         dotCount = 3;
     }
-    if ([firstDots containsObject:[NSNumber numberWithInteger:minute-3]]){
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-3]]){
         dotCount = 4;
+    }
+    else{
+        dotCount = 0;
     }
 }
 
