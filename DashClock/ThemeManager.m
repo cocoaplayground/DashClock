@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Chase Acton. All rights reserved.
 //
 
-#import "ThemeManager.h"
+#import "Settings.h"
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks" //Added to surpress warning in changeTheme method while performing selector
 
 @implementation ThemeManager

@@ -16,7 +16,7 @@
     struct DComps currentTime = [delegate getDateComponets];
     [self setupClock:currentTime.min]; //Setup dots, set initial colors and theme
     [self updateClock];
-    [self performSelector:@selector(startClock) withObject:nil afterDelay:(60 - currentTime.sec)]; //Update clock once per minute, starting on the minute
+    [self performSelector:@selector(startClock) withObject:nil afterDelay:(secondsPerMinute - currentTime.sec)]; //Update clock once per minute, starting on the minute
     themeManager = [[ThemeManager alloc] init];
 }
 
@@ -24,13 +24,13 @@
 
 -(void)setupClock:(int)minute{
     [self initializeDots:minute];
-    self.onColor = [UIColor whiteColor];
-    self.offColor = [UIColor darkGrayColor];
+    self.onColor = defaultOnColor;
+    self.offColor = defaultOffColor;
 }
 
 -(void)startClock{
     [self updateClock];
-    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateClock) userInfo:nil repeats:YES]; //Update clock every second
+    [NSTimer scheduledTimerWithTimeInterval:updatesPerMinute target:self selector:@selector(updateClock) userInfo:nil repeats:YES];
 }
 
 #pragma mark - Main Clock Methods -
@@ -45,20 +45,23 @@
     if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))) //Light up 10
         ten1.on;
     
-    if (((CTGreaterThan 4) && (CTLessThan 10)) || ((CTGreaterThan 54) && (CTLessThan 60))) //Light up 5
+    if (((CTGreaterThan 4) && (CTLessThan 10)) || ((CTGreaterThan 54) && (CTLessThan 60))){ //Light up 5
         five1.on;
+    }
     
     if (((CTGreaterThan 14) && (CTLessThan 20)) || ((CTGreaterThan 44) && (CTLessThan 50))) //Light up a quarter
         a.on; quarter.on;
     
-    if (((CTGreaterThan 29) && (CTLessThan 35))) //Light up a half
+    if (((CTGreaterThan 29) && (CTLessThan 35))){ //Light up a half
         half.on
-        
-        if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))) //Light up twenty
-            twenty.on;
+    }
     
-    if (((CTGreaterThan 24) && (CTLessThan 30)) || ((CTGreaterThan 34) && (CTLessThan 40))) //Light up twenty five
+    if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))) //Light up twenty
+        twenty.on;
+    
+    if (((CTGreaterThan 24) && (CTLessThan 30)) || ((CTGreaterThan 34) && (CTLessThan 40))){ //Light up twenty five
         twenty.on; five1.on;
+    }
     
     NSString *hourString; //Current hour
     if (currentTime.hour > 12)
@@ -91,9 +94,10 @@
     if (minute == 0){
         to.off;
         past.off;
-    }if (minute >= 35)
+    }else if (minute >= 35){
         to.on;
-    if (minute >= 5)
+    }
+    else if (minute >= 5)
         past.on;
 }
 
@@ -106,14 +110,14 @@
             }else{
                 if (label.enabled == TRUE){
                     label.textColor = self.onColor;
-                    label.alpha = 1.0;
+                    label.alpha = fullTextColor;
                 }else{
                     label.textColor = self.onColor;
                     label.textColor = self.offColor;
                     if ((themeManager.themeCount == 1) || (themeManager.themeCount == 3)){
-                        label.alpha = 0.3;
+                        label.alpha = lightTextColor;
                     }else{
-                        label.alpha = 0.45;
+                        label.alpha = darkTextColor;
                     }
                 }
             }

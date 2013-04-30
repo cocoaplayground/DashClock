@@ -30,6 +30,7 @@
 		1CB3B7DB16B603E300132AB0 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB3B7D916B603DD00132AB0 /* libFlurry.a */; };
 		1CB3B7DE16B6041900132AB0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB3B7DD16B6041900132AB0 /* SystemConfiguration.framework */; };
 		1CCC72BF172F487500740F50 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC72BE172F487500740F50 /* ThemeManager.m */; };
+		1CE0BBB1172F6516009328BB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0BBB0172F6516009328BB /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,8 @@
 		1CB3B7DD16B6041900132AB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1CCC72BD172F487500740F50 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
 		1CCC72BE172F487500740F50 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
+		1CE0BBAF172F6516009328BB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		1CE0BBB0172F6516009328BB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +116,7 @@
 		1C9C5D1016A713610094A638 /* DashClock */ = {
 			isa = PBXGroup;
 			children = (
-				1CB3B7DC16B603E800132AB0 /* Flurry */,
-				1C9C5D3916A721F90094A638 /* Settings.h */,
-				1C9C5D1916A713610094A638 /* AppDelegate.h */,
-				1C9C5D1A16A713610094A638 /* AppDelegate.m */,
+				1CCC72C1172F4DE500740F50 /* Utility */,
 				1C9C5D2816A713610094A638 /* ViewController.h */,
 				1C9C5D2916A713610094A638 /* ViewController.m */,
 				1CCC72BD172F487500740F50 /* ThemeManager.h */,
@@ -166,6 +166,27 @@
 				1CB3B7D916B603DD00132AB0 /* libFlurry.a */,
 			);
 			name = Flurry;
+			sourceTree = "<group>";
+		};
+		1CCC72C0172F4DD800740F50 /* Third-Party */ = {
+			isa = PBXGroup;
+			children = (
+				1CB3B7DC16B603E800132AB0 /* Flurry */,
+			);
+			name = "Third-Party";
+			sourceTree = "<group>";
+		};
+		1CCC72C1172F4DE500740F50 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1C9C5D3916A721F90094A638 /* Settings.h */,
+				1CE0BBAF172F6516009328BB /* Constants.h */,
+				1CE0BBB0172F6516009328BB /* Constants.m */,
+				1CCC72C0172F4DD800740F50 /* Third-Party */,
+				1C9C5D1916A713610094A638 /* AppDelegate.h */,
+				1C9C5D1A16A713610094A638 /* AppDelegate.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +268,7 @@
 				1C9C5D1B16A713610094A638 /* AppDelegate.m in Sources */,
 				1C9C5D2A16A713610094A638 /* ViewController.m in Sources */,
 				1CCC72BF172F487500740F50 /* ThemeManager.m in Sources */,
+				1CE0BBB1172F6516009328BB /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
