@@ -40,16 +40,10 @@
     NSDate *now = [NSDate date];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *dateComponents = [gregorian components:(NSYearCalendarUnit  | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit  | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
-    
-    //Get the components we need for the clock
     a.min   = [dateComponents minute];
     a.hour  = [dateComponents hour];
     a.sec   = [dateComponents second];
     
-    //Not currently used, but may be useful in the future
-    a.year  = [dateComponents year];
-    a.month = [dateComponents month];
-    a.day   = [dateComponents day];
     return a;
 }
 

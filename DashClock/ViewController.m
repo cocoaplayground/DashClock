@@ -34,14 +34,12 @@
     [NSTimer scheduledTimerWithTimeInterval:updatesPerMinute target:self selector:@selector(updateClock) userInfo:nil repeats:YES];
 }
 
-#pragma mark - Main Clock Methods -
-
 -(void)updateClock{
     struct DComps currentTime = [timeComponents getDateComponets];
     
     [self getLabels:1];
     it.on; is.on; //Always on
-    [self dots]; //Setup minute dots
+    [self illuminateMinuteDots]; //Setup minute dots
     
     if (((CTGreaterThan 9) && (CTLessThan 15)) || ((CTGreaterThan 49) && (CTLessThan 55))){ //Light up 10
         ten1.on;
@@ -128,7 +126,7 @@
     }
 }
 
--(void)dots{
+-(void)illuminateMinuteDots{
     if (dotCount == 0){
         dot1.off; dot2.off; dot3.off; dot4.off;
     }else if (dotCount == 1){

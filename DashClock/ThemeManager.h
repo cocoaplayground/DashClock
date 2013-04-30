@@ -10,7 +10,6 @@
 
 @interface ThemeManager : NSObject
 
-
 -(void)changeTheme;
 
 @property (nonatomic) int themeCount;
