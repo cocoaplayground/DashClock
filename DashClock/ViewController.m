@@ -15,7 +15,7 @@
     [super viewDidLoad];
     struct DComps currentTime = [delegate getDateComponets];
     [self setupClock:currentTime.min]; //Setup dots, set initial colors and theme
-    [self clock]; //Do initial update
+    [self updateClock];
     [self performSelector:@selector(startClock) withObject:nil afterDelay:(60 - currentTime.sec)]; //Update clock once per minute, starting on the minute
 }
 
@@ -29,13 +29,13 @@
 }
 
 -(void)startClock{
-    [self clock];
-    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(clock) userInfo:nil repeats:YES]; //Update clock every second
+    [self updateClock];
+    [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(updateClock) userInfo:nil repeats:YES]; //Update clock every second
 }
 
 #pragma mark - Main Clock Methods -
 
--(void)clock{
+-(void)updateClock{
     struct DComps currentTime = [delegate getDateComponets];
     
     [self getLabels:1];
@@ -125,21 +125,16 @@
 
 -(void)initializeDots:(int)minute{
     NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:16],[NSNumber numberWithInteger:21],[NSNumber numberWithInteger:26],[NSNumber numberWithInteger:31],[NSNumber numberWithInteger:36],[NSNumber numberWithInteger:41],[NSNumber numberWithInteger:46],[NSNumber numberWithInteger:51],[NSNumber numberWithInteger:56],nil];
-    if ([firstDots containsObject:[NSNumber numberWithInteger:minute]]){
+    if ([firstDots containsObject:[NSNumber numberWithInteger:minute]])
         dotCount = 1;
-    }
-    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-1]]){
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-1]])
         dotCount = 2;
-    }
-    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-2]]){
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-2]])
         dotCount = 3;
-    }
-    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-3]]){
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-3]])
         dotCount = 4;
-    }
-    else{
+    else
         dotCount = 0;
-    }
 }
 
 -(void)dots{
