@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ThemeManager.h"
+@class ThemeManager;
 
 @interface ViewController : UIViewController{
     IBOutlet UILabel    *it, *is, *am, *pm, *a, *quarter, *twenty, *five1, //Labels that can be lit up
@@ -18,10 +20,11 @@
     int themeCount;     //Used to get the current theme
     int dotCount;       //Current minute dot
     int offAlpha;       //Alpha of "Off" labels
-    UIColor *onColor;   //Color when label is "On"
-    UIColor *offColor;  //Color when label is "Off"
+    ThemeManager *themeManager;
 }
 
--(IBAction)changeTheme; //Cycle through themes
+-(IBAction)cycleTheme; //Cycle through themes
+@property (nonatomic, retain) UIColor *onColor; //Color when label is "On"
+@property (nonatomic, retain) UIColor *offColor; //Color when label is "Off"
 
 @end

@@ -29,6 +29,7 @@
 		1CAB986616B5F445008F0577 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB986516B5F445008F0577 /* Icon-72@2x.png */; };
 		1CB3B7DB16B603E300132AB0 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB3B7D916B603DD00132AB0 /* libFlurry.a */; };
 		1CB3B7DE16B6041900132AB0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB3B7DD16B6041900132AB0 /* SystemConfiguration.framework */; };
+		1CCC72BF172F487500740F50 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC72BE172F487500740F50 /* ThemeManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		1CB3B7D816B603DD00132AB0 /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		1CB3B7D916B603DD00132AB0 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		1CB3B7DD16B6041900132AB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1CCC72BD172F487500740F50 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
+		1CCC72BE172F487500740F50 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 				1C9C5D1A16A713610094A638 /* AppDelegate.m */,
 				1C9C5D2816A713610094A638 /* ViewController.h */,
 				1C9C5D2916A713610094A638 /* ViewController.m */,
+				1CCC72BD172F487500740F50 /* ThemeManager.h */,
+				1CCC72BE172F487500740F50 /* ThemeManager.m */,
 				1C9C5D2216A713610094A638 /* MainStoryboard_iPhone.storyboard */,
 				1C9C5D2516A713610094A638 /* MainStoryboard_iPad.storyboard */,
 				1C9C5D1116A713610094A638 /* Supporting Files */,
@@ -241,6 +246,7 @@
 				1C9C5D1716A713610094A638 /* main.m in Sources */,
 				1C9C5D1B16A713610094A638 /* AppDelegate.m in Sources */,
 				1C9C5D2A16A713610094A638 /* ViewController.m in Sources */,
+				1CCC72BF172F487500740F50 /* ThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

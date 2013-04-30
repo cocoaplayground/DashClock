@@ -7,9 +7,9 @@
 //
 
 #import "Settings.h"
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks" //Added to surpress warning in changeTheme method while performing selector
 
 @implementation ViewController
+@synthesize onColor, offColor;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -17,14 +17,15 @@
     [self setupClock:currentTime.min]; //Setup dots, set initial colors and theme
     [self updateClock];
     [self performSelector:@selector(startClock) withObject:nil afterDelay:(60 - currentTime.sec)]; //Update clock once per minute, starting on the minute
+    themeManager = [[ThemeManager alloc] init];
 }
 
 #pragma mark - Clock Setup -
 
 -(void)setupClock:(int)minute{
     [self initializeDots:minute];
-    onColor = [UIColor whiteColor];
-    offColor = [UIColor darkGrayColor];
+    self.onColor = [UIColor whiteColor];
+    self.offColor = [UIColor darkGrayColor];
     themeCount = 1;
 }
 
@@ -101,15 +102,16 @@
     for (UIView *view in self.view.subviews){
         if([view isKindOfClass:[UILabel class]]){
             UILabel *label = (UILabel*)view;
+            NSLog(@"lol");
             if (type == 1){
                 label.off;
             }else{
                 if (label.enabled == TRUE){
-                    label.textColor = onColor;
+                    label.textColor = self.onColor;
                     label.alpha = 1.0;
                 }else{
-                    label.textColor = onColor;
-                    label.textColor = offColor;
+                    label.textColor = self.onColor;
+                    label.textColor = self.offColor;
                     if ((themeCount == 1) || (themeCount == 3)){
                         label.alpha = 0.3;
                     }else{
@@ -155,34 +157,12 @@
 
 #pragma mark - Themes -
 
--(IBAction)changeTheme{
-    themeCount++;
-    if (themeCount > 4) themeCount = 1;
-    [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"theme%i",themeCount])];
-    [self getLabels:2]; //Called to eliminate delay when turning on clock
-}
-
--(void)theme1{
-    self.view.backgroundColor = [UIColor blackColor];
-    onColor = [UIColor whiteColor];
-    offColor = [UIColor darkGrayColor];
-}
-
--(void)theme2{
-    self.view.backgroundColor = [UIColor whiteColor];
-    onColor = [UIColor blackColor];
-    offColor = [UIColor darkGrayColor];
-}
-
--(void)theme3{
-    self.view.backgroundColor = [UIColor blackColor];
-    onColor = [UIColor colorWithRed:19.0/255.0 green:92.0/255.0 blue:242.0/255.0 alpha:1.0];
-    offColor = [UIColor darkGrayColor];
-}
-
--(void)theme4{
-    self.view.backgroundColor = [UIColor whiteColor];
-    onColor = [UIColor colorWithRed:19.0/255.0 green:92.0/255.0 blue:242.0/255.0 alpha:1.0];
+-(IBAction)cycleTheme{
+    [themeManager changeTheme];
+    self.view.backgroundColor = themeManager.backgroundColor;
+    self.onColor = themeManager.onColor;
+    self.offColor = themeManager.offColor;
+    [self getLabels:2];
 }
 
 @end
