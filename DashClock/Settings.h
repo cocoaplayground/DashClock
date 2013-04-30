@@ -7,8 +7,7 @@
 //Imports
 #import "ViewController.h"
 #import "Constants.h"
-#import "AppDelegate.h"
-#define delegate ((AppDelegate *)[[UIApplication sharedApplication] delegate]) //Allow access to the delegate from all classes
+#import "TimeComponents.h"
 
 #define on enabled = TRUE;
 #define off enabled = FALSE;

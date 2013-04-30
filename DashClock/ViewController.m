@@ -13,11 +13,12 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    struct DComps currentTime = [delegate getDateComponets];
+    themeManager = [[ThemeManager alloc] init];
+    timeComponents = [[TimeComponents alloc] init];
+    struct DComps currentTime = [timeComponents getDateComponets];
     [self setupClock:currentTime.min]; //Setup dots, set initial colors and theme
     [self updateClock];
     [self performSelector:@selector(startClock) withObject:nil afterDelay:(secondsPerMinute - currentTime.sec)]; //Update clock once per minute, starting on the minute
-    themeManager = [[ThemeManager alloc] init];
 }
 
 #pragma mark - Clock Setup -
@@ -36,7 +37,7 @@
 #pragma mark - Main Clock Methods -
 
 -(void)updateClock{
-    struct DComps currentTime = [delegate getDateComponets];
+    struct DComps currentTime = [timeComponents getDateComponets];
     
     [self getLabels:1];
     it.on; is.on; //Always on
@@ -76,14 +77,14 @@
         nextHourString = [NSString stringWithFormat:@"%i",currentTime.hour];
     
     if (currentTime.min < 35){
-        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on; //light up current hour
+        ((UILabel *)[self valueForKey:[timeComponents.hours valueForKey:hourString]]).on; //light up current hour
     }else{
-        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:nextHourString]]).on; //light up next hour
+        ((UILabel *)[self valueForKey:[timeComponents.hours valueForKey:nextHourString]]).on; //light up next hour
     }
     
     if ((currentTime.min >= 0) && (currentTime.min < 5)){ //On the hour
         oclock.on;
-        ((UILabel *)[self valueForKey:[delegate.hours valueForKey:hourString]]).on;
+        ((UILabel *)[self valueForKey:[timeComponents.hours valueForKey:hourString]]).on;
     }
     
     [self pastTo:currentTime.min];

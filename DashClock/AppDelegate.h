@@ -7,15 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Settings.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>{
-    NSMutableDictionary *hours; //Dictionary to convert hours as an integer to it's string value (Ex. "1" = "One")
-}
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, retain) NSMutableDictionary *hours;
-
--(struct DComps)getDateComponets; //Returns current date and time information
 
 @end

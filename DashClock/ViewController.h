@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ThemeManager.h"
+#import "TimeComponents.h"
 
 @class ThemeManager;
-
-
+@class TimeComponents;
 
 @interface ViewController : UIViewController{
     IBOutlet UILabel    *it, *is, *am, *pm, *a, *quarter, *twenty, *five1, //Labels that can be lit up
@@ -23,9 +23,11 @@
     int dotCount;       //Current minute dot
     int offAlpha;       //Alpha of "Off" labels
     ThemeManager *themeManager;
+    TimeComponents *timeComponents;
 }
 
 -(IBAction)cycleTheme; //Cycle through themes
+
 @property (nonatomic, retain) UIColor *onColor; //Color when label is "On"
 @property (nonatomic, retain) UIColor *offColor; //Color when label is "Off"
 

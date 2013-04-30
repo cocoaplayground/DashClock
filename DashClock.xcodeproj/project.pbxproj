@@ -31,6 +31,7 @@
 		1CB3B7DE16B6041900132AB0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB3B7DD16B6041900132AB0 /* SystemConfiguration.framework */; };
 		1CCC72BF172F487500740F50 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCC72BE172F487500740F50 /* ThemeManager.m */; };
 		1CE0BBB1172F6516009328BB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0BBB0172F6516009328BB /* Constants.m */; };
+		1CE0BBB4172F6926009328BB /* TimeComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0BBB3172F6926009328BB /* TimeComponents.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		1CCC72BE172F487500740F50 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 		1CE0BBAF172F6516009328BB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1CE0BBB0172F6516009328BB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		1CE0BBB2172F6926009328BB /* TimeComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeComponents.h; sourceTree = "<group>"; };
+		1CE0BBB3172F6926009328BB /* TimeComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeComponents.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,8 @@
 				1C9C5D2916A713610094A638 /* ViewController.m */,
 				1CCC72BD172F487500740F50 /* ThemeManager.h */,
 				1CCC72BE172F487500740F50 /* ThemeManager.m */,
+				1CE0BBB2172F6926009328BB /* TimeComponents.h */,
+				1CE0BBB3172F6926009328BB /* TimeComponents.m */,
 				1C9C5D2216A713610094A638 /* MainStoryboard_iPhone.storyboard */,
 				1C9C5D2516A713610094A638 /* MainStoryboard_iPad.storyboard */,
 				1C9C5D1116A713610094A638 /* Supporting Files */,
@@ -269,6 +274,7 @@
 				1C9C5D2A16A713610094A638 /* ViewController.m in Sources */,
 				1CCC72BF172F487500740F50 /* ThemeManager.m in Sources */,
 				1CE0BBB1172F6516009328BB /* Constants.m in Sources */,
+				1CE0BBB4172F6926009328BB /* TimeComponents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
