@@ -53,4 +53,18 @@
     return a;
 }
 
+-(int)initializeMinuteDots:(int)minute{
+    NSArray *firstDots = [NSArray arrayWithObjects:[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:6], [NSNumber numberWithInteger:11],[NSNumber numberWithInteger:16],[NSNumber numberWithInteger:21],[NSNumber numberWithInteger:26],[NSNumber numberWithInteger:31],[NSNumber numberWithInteger:36],[NSNumber numberWithInteger:41],[NSNumber numberWithInteger:46],[NSNumber numberWithInteger:51],[NSNumber numberWithInteger:56],nil];
+    if ([firstDots containsObject:[NSNumber numberWithInteger:minute]])
+        return 1;
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-1]])
+        return 2;
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-2]])
+        return 3;
+    else if ([firstDots containsObject:[NSNumber numberWithInteger:minute-3]])
+        return 4;
+    else
+        return 0;
+}
+
 @end

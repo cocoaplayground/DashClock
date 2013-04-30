@@ -13,5 +13,6 @@
 @property (nonatomic, retain) NSMutableDictionary *hours; //Dictionary to convert hours as an integer to it's string value (Ex. "1" = "One")
 
 -(struct DComps)getDateComponets; //Returns current date and time information
+-(int)initializeMinuteDots:(int)minute;
 
 @end
