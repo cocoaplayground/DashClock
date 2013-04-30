@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ViewController.h"
 
-@interface ThemeManager : NSObject{
-    
-    int themeCount;
+@interface ThemeManager : NSObject
 
-}
 
 -(void)changeTheme;
+
+@property (nonatomic) int themeCount;
 @property (nonatomic, retain) UIColor *onColor;
 @property (nonatomic, retain) UIColor *offColor;
 @property (nonatomic, retain) UIColor *backgroundColor;

@@ -26,7 +26,6 @@
     [self initializeDots:minute];
     self.onColor = [UIColor whiteColor];
     self.offColor = [UIColor darkGrayColor];
-    themeCount = 1;
 }
 
 -(void)startClock{
@@ -102,7 +101,6 @@
     for (UIView *view in self.view.subviews){
         if([view isKindOfClass:[UILabel class]]){
             UILabel *label = (UILabel*)view;
-            NSLog(@"lol");
             if (type == 1){
                 label.off;
             }else{
@@ -112,7 +110,7 @@
                 }else{
                     label.textColor = self.onColor;
                     label.textColor = self.offColor;
-                    if ((themeCount == 1) || (themeCount == 3)){
+                    if ((themeManager.themeCount == 1) || (themeManager.themeCount == 3)){
                         label.alpha = 0.3;
                     }else{
                         label.alpha = 0.45;

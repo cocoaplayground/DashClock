@@ -17,7 +17,6 @@
                         *ten2, *oclock;
     IBOutlet UILabel    *dot1, *dot2, *dot3, *dot4; //Dots to show minutes
     
-    int themeCount;     //Used to get the current theme
     int dotCount;       //Current minute dot
     int offAlpha;       //Alpha of "Off" labels
     ThemeManager *themeManager;

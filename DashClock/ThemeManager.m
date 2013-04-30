@@ -10,18 +10,18 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks" //Added to surpress warning in changeTheme method while performing selector
 
 @implementation ThemeManager
-@synthesize onColor, offColor;
+@synthesize onColor, offColor, themeCount;
 
 - (id)init{
 	self = [super init];
 	if (self != nil)
-        themeCount = 1;
+        self.themeCount = 1;
 	return self;
 }
 
 -(void)changeTheme{
-    themeCount++;
-    if (themeCount > 4) themeCount = 1;
+    self.themeCount++;
+    if (self.themeCount > 4) self.themeCount = 1;
     [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"theme%i",themeCount])];
 }
 
