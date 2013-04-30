@@ -53,9 +53,9 @@
     
     if (((CTGreaterThan 29) && (CTLessThan 35))) //Light up a half
         half.on
-    
-    if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))) //Light up twenty
-        twenty.on;
+        
+        if (((CTGreaterThan 19) && (CTLessThan 30)) || ((CTGreaterThan 39) && (CTLessThan 45))) //Light up twenty
+            twenty.on;
     
     if (((CTGreaterThan 24) && (CTLessThan 30)) || ((CTGreaterThan 34) && (CTLessThan 40))) //Light up twenty five
         twenty.on; five1.on;
